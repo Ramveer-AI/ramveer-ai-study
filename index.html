@@ -4,59 +4,211 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ramveer AI Study</title>
+<title>Ramveer AI Study - Online Test</title>
+
 <style>
-body{font-family:Arial;background:#f0f5ff;color:#172554;margin:0;text-align:center}
-header{background:#123c91;color:white;padding:22px}
-button{padding:12px;margin:6px;background:#2563eb;color:white;border:0;border-radius:8px;font-size:16px}
-section{background:white;margin:16px;padding:16px;border-radius:12px;text-align:left}
-.hidden{display:none}
+body {
+  font-family: Arial, sans-serif;
+  background: #f0f5ff;
+  color: #172554;
+  margin: 0;
+  text-align: center;
+}
+header {
+  background: #123c91;
+  color: white;
+  padding: 22px 10px;
+}
+button {
+  background: #2563eb;
+  color: white;
+  border: 0;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 6px;
+  font-size: 16px;
+}
+.card {
+  background: white;
+  margin: 16px auto;
+  padding: 18px;
+  max-width: 500px;
+  border-radius: 14px;
+  text-align: left;
+  box-shadow: 0 3px 10px #d5deef;
+}
+.option {
+  display: block;
+  padding: 10px;
+  margin: 8px 0;
+  background: #eef2ff;
+  border-radius: 8px;
+}
+.hidden { display: none; }
+#result { font-weight: bold; color: #166534; }
 </style>
 </head>
+
 <body>
 <header>
-<h1>Ramveer AI Study 📚</h1>
-<p>सीखो आसान हिंदी में!</p>
+  <h1>Ramveer AI Study 📚</h1>
+  <p>सीखो आसान हिंदी में!</p>
 </header>
 
-<h2>अपना विषय चुनें</h2>
-<button onclick="showNotes('botanyNotes')">🌿 Botany</button>
-<button onclick="showNotes('computerNotes')">💻 Computer Application</button>
+<h2>ऑनलाइन MCQ टेस्ट 📝</h2>
+<p>विषय चुनें और अपना ज्ञान जाँचें।</p>
 
-<section id="welcome">
-<h3>स्वागत है!</h3>
-<p>ऊपर किसी विषय के बटन पर क्लिक करके नोट्स पढ़ें।</p>
-</section>
+<button onclick="startTest('botany')">🌿 Botany Test</button>
+<button onclick="startTest('computer')">💻 Computer Test</button>
 
-<section id="botanyNotes" class="hidden">
-<h2>🌿 Botany Notes</h2>
-<h3>1. कोशिका (Cell)</h3>
-<p>कोशिका जीवों की संरचनात्मक और क्रियात्मक मूल इकाई है।</p>
-<h3>2. प्रकाश संश्लेषण (Photosynthesis)</h3>
-<p>हरे पौधे सूर्य के प्रकाश की सहायता से पानी और कार्बन डाइऑक्साइड से भोजन बनाते हैं और ऑक्सीजन छोड़ते हैं।</p>
-<h3>3. जाइलम (Xylem)</h3>
-<p>जाइलम जड़ों से पानी और खनिजों को पौधे के दूसरे भागों तक पहुँचाता है।</p>
-</section>
-
-<section id="computerNotes" class="hidden">
-<h2>💻 Computer Application Notes</h2>
-<h3>1. Python</h3>
-<p>Python एक सरल प्रोग्रामिंग भाषा है। इसका उपयोग AI और Data Science में होता है।</p>
-<h3>2. Software Engineering</h3>
-<p>इसमें सॉफ्टवेयर की योजना, डिजाइन, निर्माण, परीक्षण और रखरखाव किया जाता है।</p>
-<h3>3. Data Science</h3>
-<p>डेटा साइंस में डेटा का विश्लेषण करके उपयोगी जानकारी प्राप्त की जाती है।</p>
-</section>
-
-<footer>© 2026 Ramveer AI Labs</footer>
+<div id="quiz" class="card hidden">
+  <h3 id="subject"></h3>
+  <p id="progress"></p>
+  <h3 id="question"></h3>
+  <div id="options"></div>
+  <button id="next" onclick="nextQuestion()">अगला प्रश्न ➜</button>
+  <p id="result"></p>
+</div>
 
 <script>
-function showNotes(id){
-document.getElementById('welcome').classList.add('hidden');
-document.getElementById('botanyNotes').classList.add('hidden');
-document.getElementById('computerNotes').classList.add('hidden');
-document.getElementById(id).classList.remove('hidden');
+const tests = {
+  botany: [
+    {
+      q: "1. कोशिका की खोज किसने की?",
+      options: ["न्यूटन", "रॉबर्ट हुक", "डार्विन", "मेंडल"],
+      answer: 1
+    },
+    {
+      q: "2. पौधों में प्रकाश संश्लेषण कहाँ होता है?",
+      options: ["जड़", "फूल", "क्लोरोप्लास्ट", "बीज"],
+      answer: 2
+    },
+    {
+      q: "3. जाइलम का मुख्य कार्य क्या है?",
+      options: ["भोजन बनाना", "पानी पहुँचाना", "बीज बनाना", "फूल बनाना"],
+      answer: 1
+    },
+    {
+      q: "4. पौधों को हरा रंग किससे मिलता है?",
+      options: ["क्लोरोफिल", "हीमोग्लोबिन", "स्टार्च", "प्रोटीन"],
+      answer: 0
+    },
+    {
+      q: "5. पौधे प्रकाश संश्लेषण में कौन-सी गैस लेते हैं?",
+      options: ["ऑक्सीजन", "नाइट्रोजन", "कार्बन डाइऑक्साइड", "हाइड्रोजन"],
+      answer: 2
+    }
+  ],
+  computer: [
+    {
+      q: "1. Python क्या है?",
+      options: ["प्रोग्रामिंग भाषा", "कीबोर्ड", "मॉनिटर", "ऑपरेटिंग सिस्टम"],
+      answer: 0
+    },
+    {
+      q: "2. CPU का पूरा नाम क्या है?",
+      options: ["Central Processing Unit", "Computer Power Unit", "Control Print Unit", "Central Program User"],
+      answer: 0
+    },
+    {
+      q: "3. HTML का उपयोग किसमें होता है?",
+      options: ["वेबसाइट बनाने में", "खाना बनाने में", "पेंट करने में", "कॉल करने में"],
+      answer: 0
+    },
+    {
+      q: "4. Data Science का उद्देश्य क्या है?",
+      options: ["डेटा से उपयोगी जानकारी निकालना", "कंप्यूटर बंद करना", "टाइपिंग करना", "स्क्रीन साफ करना"],
+      answer: 0
+    },
+    {
+      q: "5. Software Engineering में क्या किया जाता है?",
+      options: ["सॉफ्टवेयर बनाना और जाँचना", "केवल टाइपिंग", "केवल चित्र बनाना", "केवल इंटरनेट चलाना"],
+      answer: 0
+    }
+  ]
+};
+
+let currentTest = [];
+let index = 0;
+let score = 0;
+let selected = null;
+
+function startTest(subject) {
+  currentTest = tests[subject];
+  index = 0;
+  score = 0;
+  document.getElementById("quiz").classList.remove("hidden");
+  document.getElementById("subject").textContent =
+    subject === "botany" ? "🌿 Botany Test" : "💻 Computer Test";
+  showQuestion();
+  document.getElementById("quiz").scrollIntoView({behavior:"smooth"});
+}
+
+function showQuestion() {
+  selected = null;
+  const item = currentTest[index];
+  document.getElementById("progress").textContent =
+    "प्रश्न " + (index + 1) + " / " + currentTest.length;
+  document.getElementById("question").textContent = item.q;
+  document.getElementById("result").textContent = "";
+  document.getElementById("next").disabled = false;
+  document.getElementById("next").textContent =
+    index === currentTest.length - 1 ? "टेस्ट पूरा करें" : "अगला प्रश्न ➜";
+
+  const box = document.getElementById("options");
+  box.innerHTML = "";
+
+  item.options.forEach((option, i) => {
+    const label = document.createElement("label");
+    label.className = "option";
+    const radio = document.createElement("input");
+    radio.type = "radio";
+    radio.name = "answer";
+    radio.value = i;
+    radio.addEventListener("change", () => {
+      selected = i;
+    });
+    label.appendChild(radio);
+    label.appendChild(document.createTextNode(" " + option));
+    box.appendChild(label);
+  });
+}
+
+function nextQuestion() {
+  if (selected === null) {
+    document.getElementById("result").textContent =
+      "पहले एक उत्तर चुनें!";
+    return;
+  }
+
+  if (selected === currentTest[index].answer) {
+    score++;
+  }
+
+  index++;
+
+  if (index < currentTest.length) {
+    showQuestion();
+  } else {
+    document.getElementById("progress").textContent = "टेस्ट पूरा हुआ!";
+    document.getElementById("question").textContent =
+      "आपका स्कोर: " + score + " / " + currentTest.length;
+    document.getElementById("options").innerHTML =
+      score === currentTest.length
+        ? "शानदार! सभी उत्तर सही हैं। 🎉"
+        : "अच्छा प्रयास! दोबारा अभ्यास करें। 💪";
+    document.getElementById("next").textContent = "फिर से टेस्ट दें";
+    document.getElementById("next").onclick = () => {
+      document.getElementById("next").onclick = nextQuestion;
+      startTest(currentTest === tests.botany ? "botany" : "computer");
+    };
+    document.getElementById("next").disabled = false;
+  }
 }
 </script>
+
+<footer>
+  <p>© 2026 Ramveer AI Labs</p>
+</footer>
 </body>
 </html>
