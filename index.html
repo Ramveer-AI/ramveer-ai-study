@@ -47,22 +47,22 @@ button {
 <div class="card">
 <h3>🌿 Botany</h3>
 <p>वनस्पति विज्ञान के आसान नोट्स।</p>
-<button onclick="alert('Botany के नोट्स जल्द आएँगे!')">
+<button onclick="document.getElementById('botanyNotes').style.display='block'">
 पढ़ना शुरू करें
+</button>
 </button>
 </div>
 
 <div class="card">
 <h3>💻 Computer Application</h3>
 <p>कंप्यूटर, Python और Software Engineering।</p>
-<button onclick="alert('Computer के नोट्स जल्द आएँगे!')">
+<button onclick="document.getElementById('computerNotes').style.display='block'">
 सीखना शुरू करें
 </button>
 </div>
 
 <footer>© 2026 Ramveer AI Labs</footer>
-</body><div class="card">
-  <h2>🌿 Botany Notes</h2>
+</body><div class="card" id="botanyNotes" style="display:none">
 
   <h3>Photosynthesis (प्रकाश संश्लेषण)</h3>
   <p>
@@ -77,7 +77,7 @@ button {
   <p>3. इसमें प्रकाश और जल की आवश्यकता होती है।</p>
 </div>
 
-<div class="card">
+<div class="card" id="computerNotes" style="display:none">
   <h2>💻 Computer Application Notes</h2>
 
   <h3>Python क्या है?</h3>
