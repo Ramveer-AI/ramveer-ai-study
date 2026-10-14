@@ -3,107 +3,14 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ramveer AI Study</title>
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f0f5ff;
-  color: #172554;
-  text-align: center;
-}
-header {
-  background: #123c91;
-  color: white;
-  padding: 25px 10px;
-}
-.card {
-  background: white;
-  padding: 20px;
-  margin: 20px auto;
-  max-width: 400px;
-  border-radius: 15px;
-  box-shadow: 0 3px 10px #ccd6e8;
-}
-button {
-  background: #2563eb;
-  color: white;
-  border: 0;
-  padding: 12px;
-  border-radius: 8px;
-}
-</style>
-</head>
-<body>
-<header>
-<h1>Ramveer AI Study</h1>
-<p>सीखो आसान हिंदी में! 🚀</p>
-</header>
-
-<h2>आपकी पढ़ाई, आपकी सफलता 📚</h2>
-<p>मुफ्त में सीखें और अपना ज्ञान बढ़ाएँ।</p>
-
-<div class="card">
-<h3>🌿 Botany</h3>
-<p>वनस्पति विज्ञान के आसान नोट्स।</p>
-<button onclick="document.getElementById('botanyNotes').style.display='block'">
-पढ़ना शुरू करें
-</button>
-</button>
-</div>
-
-<div class="card">
-<h3>💻 Computer Application</h3>
-<p>कंप्यूटर, Python और Software Engineering।</p>
-<button onclick="document.getElementById('computerNotes').style.display='block'">
-सीखना शुरू करें
-</button>
-</div>
-
-<footer>© 2026 Ramveer AI Labs</footer>
-</body><div class="card" id="botanyNotes" style="display:none">
-
-  <h3>Photosynthesis (प्रकाश संश्लेषण)</h3>
-  <p>
-    प्रकाश संश्लेषण वह प्रक्रिया है जिसमें हरे पौधे
-    सूर्य के प्रकाश की सहायता से जल और कार्बन डाइऑक्साइड
-    से भोजन बनाते हैं तथा ऑक्सीजन छोड़ते हैं।
-  </p>
-
-  <h3>मुख्य बिंदु</h3>
-  <p>1. यह मुख्यतः पत्तियों में होता है।</p>
-  <p>2. क्लोरोफिल प्रकाश को अवशोषित करता है।</p>
-  <p>3. इसमें प्रकाश और जल की आवश्यकता होती है।</p>
-</div>
-
-<div class="card" id="computerNotes" style="display:none">
-  <h2>💻 Computer Application Notes</h2>
-
-  <h3>Python क्या है?</h3>
-  <p>
-    Python एक सरल और उच्च स्तरीय प्रोग्रामिंग भाषा है।
-    इसका उपयोग Data Science, AI, Web Development
-    और Automation में किया जाता है।
-  </p>
-
-  <h3>मुख्य बिंदु</h3>
-  <p>1. Python सीखना अपेक्षाकृत आसान है।</p>
-  <p>2. इसका कोड पढ़ना सरल होता है।</p>
-  <p>3. इसका उपयोग AI और Data Science में होता है।</p>
-</div>
-</html><!DOCTYPE html>
-<html lang="hi">
-<head>
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ramveer AI Study</title>
 <style>
 body{font-family:Arial;background:#f0f5ff;color:#172554;margin:0;text-align:center}
 header{background:#123c91;color:white;padding:22px}
+button{padding:12px;margin:6px;background:#2563eb;color:white;border:0;border-radius:8px;font-size:16px}
 section{background:white;margin:16px;padding:16px;border-radius:12px;text-align:left}
-h2{color:#123c91}
-button{padding:10px;background:#2563eb;color:white;border:0;border-radius:7px}
+.hidden{display:none}
 </style>
 </head>
 <body>
@@ -112,27 +19,44 @@ button{padding:10px;background:#2563eb;color:white;border:0;border-radius:7px}
 <p>सीखो आसान हिंदी में!</p>
 </header>
 
-<section>
+<h2>अपना विषय चुनें</h2>
+<button onclick="showNotes('botanyNotes')">🌿 Botany</button>
+<button onclick="showNotes('computerNotes')">💻 Computer Application</button>
+
+<section id="welcome">
+<h3>स्वागत है!</h3>
+<p>ऊपर किसी विषय के बटन पर क्लिक करके नोट्स पढ़ें।</p>
+</section>
+
+<section id="botanyNotes" class="hidden">
 <h2>🌿 Botany Notes</h2>
 <h3>1. कोशिका (Cell)</h3>
 <p>कोशिका जीवों की संरचनात्मक और क्रियात्मक मूल इकाई है।</p>
 <h3>2. प्रकाश संश्लेषण (Photosynthesis)</h3>
-<p>वह प्रक्रिया जिसमें हरे पौधे सूर्य के प्रकाश की सहायता से भोजन बनाते हैं। इसमें कार्बन डाइऑक्साइड और पानी का उपयोग होता है तथा ऑक्सीजन निकलती है।</p>
+<p>हरे पौधे सूर्य के प्रकाश की सहायता से पानी और कार्बन डाइऑक्साइड से भोजन बनाते हैं और ऑक्सीजन छोड़ते हैं।</p>
 <h3>3. जाइलम (Xylem)</h3>
-<p>जाइलम पौधे की जड़ों से पानी और खनिजों को दूसरे भागों तक पहुँचाने वाला ऊतक है।</p>
+<p>जाइलम जड़ों से पानी और खनिजों को पौधे के दूसरे भागों तक पहुँचाता है।</p>
 </section>
 
-<section>
+<section id="computerNotes" class="hidden">
 <h2>💻 Computer Application Notes</h2>
 <h3>1. Python</h3>
-<p>Python एक सरल और उच्च-स्तरीय प्रोग्रामिंग भाषा है, जिसका उपयोग डेटा साइंस, AI और सॉफ्टवेयर बनाने में होता है।</p>
+<p>Python एक सरल प्रोग्रामिंग भाषा है। इसका उपयोग AI और Data Science में होता है।</p>
 <h3>2. Software Engineering</h3>
-<p>सॉफ्टवेयर इंजीनियरिंग, सॉफ्टवेयर को व्यवस्थित तरीके से डिजाइन, विकसित, जाँच और रखरखाव करने की प्रक्रिया है।</p>
+<p>इसमें सॉफ्टवेयर की योजना, डिजाइन, निर्माण, परीक्षण और रखरखाव किया जाता है।</p>
 <h3>3. Data Science</h3>
-<p>डेटा साइंस में डेटा से उपयोगी जानकारी निकालने के लिए प्रोग्रामिंग, गणित और सांख्यिकी का उपयोग किया जाता है।</p>
+<p>डेटा साइंस में डेटा का विश्लेषण करके उपयोगी जानकारी प्राप्त की जाती है।</p>
 </section>
 
 <footer>© 2026 Ramveer AI Labs</footer>
+
+<script>
+function showNotes(id){
+document.getElementById('welcome').classList.add('hidden');
+document.getElementById('botanyNotes').classList.add('hidden');
+document.getElementById('computerNotes').classList.add('hidden');
+document.getElementById(id).classList.remove('hidden');
+}
+</script>
 </body>
 </html>
-
