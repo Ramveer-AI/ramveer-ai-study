@@ -1,356 +1,107 @@
-
 <!DOCTYPE html>
 <html lang="hi">
-<head>
-<meta charset="UTF-8">
-  <meta name="google-site-verification" content="JxXzgojmZbdnFOFN7k68i7xKPLL2DHa92gTHbDomlyU" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ramveer AI Study - Online Test</title>
 
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background: #f0f5ff;
-  color: #172554;
-  margin: 0;
-  text-align: center;
-}
-header {
-  background: #123c91;
-  color: white;
-  padding: 22px 10px;
-}
-button {
-  background: #2563eb;
-  color: white;
-  border: 0;
-  border-radius: 8px;
-  padding: 12px 16px;
-  margin: 6px;
-  font-size: 16px;
-}
-.card {
-  background: white;
-  margin: 16px auto;
-  padding: 18px;
-  max-width: 500px;
-  border-radius: 14px;
-  text-align: left;
-  box-shadow: 0 3px 10px #d5deef;
-}
-.option {
-  display: block;
-  padding: 10px;
-  margin: 8px 0;
-  background: #eef2ff;
-  border-radius: 8px;
-}
-.hidden { display: none; }
-#result { font-weight: bold; color: #166534; }
-</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramveer AI Study</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f0f5ff;
+            color: #172554;
+            text-align: center;
+        }
+
+        header {
+            background: #123c91;
+            color: white;
+            padding: 25px 12px;
+        }
+
+        h1 {
+            margin: 0 0 8px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 18px;
+            margin: 15px auto;
+            border-radius: 14px;
+            max-width: 420px;
+            box-shadow: 0 3px 12px #ccd6e8;
+        }
+
+        button {
+            background: #2563eb;
+            color: white;
+            border: 0;
+            border-radius: 8px;
+            padding: 12px 18px;
+            font-size: 16px;
+        }
+
+        footer {
+            padding: 20px;
+            color: #52617a;
+        }
+    </style>
 </head>
 
 <body>
-<header>
-  <h1>Ramveer AI Study 📚</h1>
-  <p>सीखो आसान हिंदी में!</p>
-</header>
+    <header>
+        <h1>Ramveer AI Study</h1>
+        <p>सीखो आसान हिंदी में! 🚀</p>
+    </header>
 
-<h2>ऑनलाइन MCQ टेस्ट 📝</h2>
-<p>विषय चुनें और अपना ज्ञान जाँचें।</p>
+    <main>
+        <h2>आपकी पढ़ाई, आपकी सफलता 📚</h2>
+        <p>मुफ्त में सीखें और अपना ज्ञान बढ़ाएँ।</p>
 
-<button onclick="startTest('botany')">🌿 Botany Test</button>
-<button onclick="startTest('computer')">💻 Computer Test</button>
+        <div class="card">
+            <h3>🌿 Botany</h3>
+            <p>वनस्पति विज्ञान के आसान नोट्स।</p>
+            <button onclick="study('Botany')">पढ़ना शुरू करें</button>
+        </div>
 
-<div id="quiz" class="card hidden">
-  <h3 id="subject"></h3>
-  <p id="progress"></p>
-  <h3 id="question"></h3>
-  <div id="options"></div>
-  <button id="next" onclick="nextQuestion()">अगला प्रश्न ➜</button>
-  <p id="result"></p>
-</div>
+        <div class="card">
+            <h3>💻 Computer Application</h3>
+            <p>कंप्यूटर, Python और Software Engineering।</p>
+            <button onclick="study('Computer Application')">सीखना शुरू करें</button>
+        </div>
 
-<script>
-const tests = {
-  botany: [
-    {
-      q: "1. कोशिका की खोज किसने की?",
-      options: ["न्यूटन", "रॉबर्ट हुक", "डार्विन", "मेंडल"],
-      answer: 1
-    },
-    {
-      q: "2. पौधों में प्रकाश संश्लेषण कहाँ होता है?",
-      options: ["जड़", "फूल", "क्लोरोप्लास्ट", "बीज"],
-      answer: 2
-    },
-    {
-      q: "3. जाइलम का मुख्य कार्य क्या है?",
-      options: ["भोजन बनाना", "पानी पहुँचाना", "बीज बनाना", "फूल बनाना"],
-      answer: 1
-    },
-    {
-      q: "4. पौधों को हरा रंग किससे मिलता है?",
-      options: ["क्लोरोफिल", "हीमोग्लोबिन", "स्टार्च", "प्रोटीन"],
-      answer: 0
-    },
-    {
-      q: "5. पौधे प्रकाश संश्लेषण में कौन-सी गैस लेते हैं?",
-      options: ["ऑक्सीजन", "नाइट्रोजन", "कार्बन डाइऑक्साइड", "हाइड्रोजन"],
-      answer: 2
-    }
-  {
-  q: "6. पौधों में पानी कौन पहुँचाता है?",
-  options: ["फ्लोएम", "जाइलम", "पत्ती", "फूल"],
-  answer: 1
-},
-{
-  q: "7. प्रकाश संश्लेषण के लिए क्या जरूरी है?",
-  options: ["सूर्य का प्रकाश", "प्लास्टिक", "लोहा", "रेत"],
-  answer: 0
-},
-{
-  q: "8. पौधों का हरा रंग किससे होता है?",
-  options: ["क्लोरोफिल", "स्टार्च", "प्रोटीन", "वसा"],
-  answer: 0
-}
-  ].
-  computer: [
-    {
-      q: "1. Python क्या है?",
-      options: ["प्रोग्रामिंग भाषा", "कीबोर्ड", "मॉनिटर", "ऑपरेटिंग सिस्टम"],
-      answer: 0
-    },
-    {
-      q: "2. CPU का पूरा नाम क्या है?",
-      options: ["Central Processing Unit", "Computer Power Unit", "Control Print Unit", "Central Program User"],
-      answer: 0
-    },
-    {
-      q: "3. HTML का उपयोग किसमें होता है?",
-      options: ["वेबसाइट बनाने में", "खाना बनाने में", "पेंट करने में", "कॉल करने में"],
-      answer: 0
-    },
-    {
-      q: "4. Data Science का उद्देश्य क्या है?",
-      options: ["डेटा से उपयोगी जानकारी निकालना", "कंप्यूटर बंद करना", "टाइपिंग करना", "स्क्रीन साफ करना"],
-      answer: 0
-    },
-    {
-      q: "5. Software Engineering में क्या किया जाता है?",
-      options: ["सॉफ्टवेयर बनाना और जाँचना", "केवल टाइपिंग", "केवल चित्र बनाना", "केवल इंटरनेट चलाना"],
-      answer: 0
-    },
-    
-{
-  q: "6. Python में स्क्रीन पर आउटपुट दिखाने के लिए कौन-सा फ़ंक्शन है?",
-  options: ["input()", "print()", "show()", "displayText()"],
-  answer: 1
-},
-{
-  q: "7. Python में यूज़र से इनपुट लेने के लिए क्या प्रयोग होता है?",
-  options: ["input()", "print()", "output()", "readlineOnly()"],
-  answer: 0
-},
-{
-  q: "8. Python में टिप्पणी (comment) किस चिह्न से शुरू होती है?",
-  options: ["//", "#", "<!--", "**"],
-  answer: 1
-},
-{
-  q: "9. Python में सूची (list) बनाने के लिए कौन-से ब्रैकेट प्रयोग होते हैं?",
-  options: ["()", "{}", "[]", "<>"],
-  answer: 2
-},
-{
-  q: "10. Python में सही शर्त लिखने का तरीका कौन-सा है?",
-  options: ["if x > 5:", "if (x > 5) then", "when x > 5", "check x > 5"],
-  answer: 0
-},
-{
-  q: "11. Data Science का मुख्य उद्देश्य क्या है?",
-  options: ["डेटा से उपयोगी जानकारी निकालना", "केवल गेम खेलना", "कंप्यूटर बंद करना", "केवल चित्र बनाना"],
-  answer: 0
-},
-{
-  q: "12. Python में डेटा विश्लेषण के लिए प्रसिद्ध लाइब्रेरी कौन-सी है?",
-  options: ["Pandas", "Paint", "Notepad", "PowerPoint"],
-  answer: 0
-},
-{
-  q: "13. NumPy का उपयोग मुख्यतः किसलिए होता है?",
-  options: ["संख्यात्मक गणना और arrays", "वीडियो कॉल", "ईमेल भेजना", "वेबसाइट होस्ट करना"],
-  answer: 0
-},
-{
-  q: "14. डेटा को ग्राफ़ में दिखाने के लिए कौन-सी Python लाइब्रेरी उपयोगी है?",
-  options: ["Matplotlib", "os", "random", "calendar"],
-  answer: 0
-},
-{
-  q: "15. CSV का पूरा नाम क्या है?",
-  options: ["Comma-Separated Values", "Computer System Version", "Common Software View", "Central Storage Variable"],
-  answer: 0
-},
-{
-  q: "16. Machine Learning क्या है?",
-  options: ["डेटा से पैटर्न सीखने की तकनीक", "केवल टाइपिंग", "कंप्यूटर की सफाई", "एक प्रकार का मॉनिटर"],
-  answer: 0
-},
-{
-  q: "17. Software Engineering क्या है?",
-  options: ["सॉफ्टवेयर बनाने और बनाए रखने की व्यवस्थित प्रक्रिया", "केवल हार्डवेयर बेचना", "केवल डेटा टाइप करना", "इंटरनेट चलाना"],
-  answer: 0
-},
-{
-  q: "18. SDLC का पूरा नाम क्या है?",
-  options: ["Software Development Life Cycle", "System Data Link Code", "Software Design Language Control", "Simple Digital Life Computer"],
-  answer: 0
-},
-{
-  q: "19. सॉफ्टवेयर विकास में आवश्यकता विश्लेषण का उद्देश्य क्या है?",
-  options: ["यूज़र की जरूरतें समझना", "केवल रंग चुनना", "कंप्यूटर बंद करना", "केवल प्रिंट निकालना"],
-  answer: 0
-},
-{
-  q: "20. सॉफ्टवेयर की त्रुटियाँ खोजने के लिए क्या किया जाता है?",
-  options: ["Testing", "Formatting", "Browsing", "Charging"],
-  answer: 0
-},
-{
-  q: "21. HTML का उपयोग मुख्यतः किसलिए होता है?",
-  options: ["वेब पेज की संरचना बनाने के लिए", "डेटाबेस को बिजली देने के लिए", "केवल गणना के लिए", "कंप्यूटर चालू करने के लिए"],
-  answer: 0
-},
-{
-  q: "22. CSS का उपयोग किसलिए किया जाता है?",
-  options: ["वेब पेज को स्टाइल देने के लिए", "डेटा मिटाने के लिए", "ऑपरेटिंग सिस्टम बनाने के लिए ही", "ईमेल पढ़ने के लिए"],
-  answer: 0
-},
-{
-  q: "23. JavaScript का उपयोग वेबसाइट में किसलिए होता है?",
-  options: ["इंटरैक्टिव व्यवहार जोड़ने के लिए", "केवल बिजली बचाने के लिए", "स्क्रीन का आकार हमेशा बढ़ाने के लिए", "केवल फाइल प्रिंट करने के लिए"],
-  answer: 0
-},
-{
-  q: "24. Git का उपयोग किसलिए किया जाता है?",
-  options: ["कोड के बदलावों का संस्करण नियंत्रण", "केवल फोटो एडिटिंग", "केवल वीडियो देखने", "केवल गणित हल करने"],
-  answer: 0
-},
-{
-  q: "25. Database क्या है?",
-  options: ["व्यवस्थित डेटा का संग्रह", "एक इनपुट डिवाइस", "एक प्रकार की केबल", "केवल एक चित्र"],
-  answer: 0
-},
-{
-  q: "26. SQL का उपयोग सामान्यतः किसलिए होता है?",
-  options: ["रिलेशनल डेटाबेस में डेटा प्रबंधित करने के लिए", "वेब पेज के रंग बदलने के लिए", "ऑडियो रिकॉर्ड करने के लिए", "कीबोर्ड चलाने के लिए"],
-  answer: 0
-},
-{
-  q: "27. Operating System का उदाहरण कौन-सा है?",
-  options: ["Linux", "HTML", "Python", "Pandas"],
-  answer: 0
-},
-{
-  q: "28. कंप्यूटर में CPU का मुख्य कार्य क्या है?",
-  options: ["निर्देशों को प्रोसेस करना", "कागज प्रिंट करना ही", "इंटरनेट की केबल बनाना", "केवल आवाज़ रिकॉर्ड करना"],
-  answer: 0
-},
-{
-  q: "29. साइबर सुरक्षा में मजबूत पासवर्ड क्यों जरूरी है?",
-  options: ["अनधिकृत पहुँच से खाते की सुरक्षा के लिए", "इंटरनेट की गति दोगुनी करने के लिए", "स्क्रीन चमकाने के लिए", "फाइल का आकार बढ़ाने के लिए"],
-  answer: 0
-},
-{
-  q: "30. Responsive Website का अर्थ क्या है?",
-  options: ["विभिन्न स्क्रीन आकारों पर अनुकूल रूप से दिखने वाली वेबसाइट", "केवल कंप्यूटर पर चलने वाली वेबसाइट", "बिना HTML की वेबसाइट", "केवल ऑफलाइन गेम"],
-  answer: 0
-}   
-  ].
-};
+        <div class="card">
+            <h3>🤖 AI Study Helper</h3>
+            <p>अपना सवाल लिखें और पढ़ाई शुरू करें।</p>
+            <input id="question" placeholder="अपना सवाल लिखें" style="padding:10px;max-width:85%;width:260px">
+            <br><br>
+            <button onclick="askAI()">सवाल पूछें</button>
+            <p id="answer"></p>
+        </div>
+    </main>
 
-let currentTest = [];
-let index = 0;
-let score = 0;
-let selected = null;
+    <footer>
+        © 2026 Ramveer AI Labs
+    </footer>
 
-function startTest(subject) {
-  currentTest = tests[subject];
-  index = 0;
-  score = 0;
-  document.getElementById("quiz").classList.remove("hidden");
-  document.getElementById("subject").textContent =
-    subject === "botany" ? "🌿 Botany Test" : "💻 Computer Test";
-  showQuestion();
-  document.getElementById("quiz").scrollIntoView({behavior:"smooth"});
-}
+    <script>
+        function study(subject) {
+            alert(subject + " के नोट्स जल्द जोड़े जाएँगे!");
+        }
 
-function showQuestion() {
-  selected = null;
-  const item = currentTest[index];
-  document.getElementById("progress").textContent =
-    "प्रश्न " + (index + 1) + " / " + currentTest.length;
-  document.getElementById("question").textContent = item.q;
-  document.getElementById("result").textContent = "";
-  document.getElementById("next").disabled = false;
-  document.getElementById("next").textContent =
-    index === currentTest.length - 1 ? "टेस्ट पूरा करें" : "अगला प्रश्न ➜";
-
-  const box = document.getElementById("options");
-  box.innerHTML = "";
-
-  item.options.forEach((option, i) => {
-    const label = document.createElement("label");
-    label.className = "option";
-    const radio = document.createElement("input");
-    radio.type = "radio";
-    radio.name = "answer";
-    radio.value = i;
-    radio.addEventListener("change", () => {
-      selected = i;
-    });
-    label.appendChild(radio);
-    label.appendChild(document.createTextNode(" " + option));
-    box.appendChild(label);
-  });
-}
-
-function nextQuestion() {
-  if (selected === null) {
-    document.getElementById("result").textContent =
-      "पहले एक उत्तर चुनें!";
-    return;
-  }
-
-  if (selected === currentTest[index].answer) {
-    score++;
-  }
-
-  index++;
-
-  if (index < currentTest.length) {
-    showQuestion();
-  } else {
-    document.getElementById("progress").textContent = "टेस्ट पूरा हुआ!";
-    document.getElementById("question").textContent =
-      "आपका स्कोर: " + score + " / " + currentTest.length;
-    document.getElementById("options").innerHTML =
-      score === currentTest.length
-        ? "शानदार! सभी उत्तर सही हैं। 🎉"
-        : "अच्छा प्रयास! दोबारा अभ्यास करें। 💪";
-    document.getElementById("next").textContent = "फिर से टेस्ट दें";
-    document.getElementById("next").onclick = () => {
-      document.getElementById("next").onclick = nextQuestion;
-      startTest(currentTest === tests.botany ? "botany" : "computer");
-    };
-    document.getElementById("next").disabled = false;
-  }
-}
-</script>
-
-<footer>
-  <p>© 2026 Ramveer AI Labs</p>
-</footer>
+        function askAI() {
+            const q = document.getElementById("question").value.trim();
+            document.getElementById("answer").textContent =
+                q ? "आपका सवाल: " + q +
+                " — AI उत्तर सुविधा अभी जोड़नी बाकी है।" :
+                "कृपया पहले अपना सवाल लिखें।";
+        }
+    </script>
 </body>
+
 </html>
