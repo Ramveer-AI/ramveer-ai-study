@@ -1,107 +1,62 @@
+
 <!DOCTYPE html>
 <html lang="hi">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ramveer AI Study</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f0f5ff;
-            color: #172554;
-            text-align: center;
-        }
-
-        header {
-            background: #123c91;
-            color: white;
-            padding: 25px 12px;
-        }
-
-        h1 {
-            margin: 0 0 8px;
-        }
-
-        main {
-            padding: 20px;
-        }
-
-        .card {
-            background: white;
-            padding: 18px;
-            margin: 15px auto;
-            border-radius: 14px;
-            max-width: 420px;
-            box-shadow: 0 3px 12px #ccd6e8;
-        }
-
-        button {
-            background: #2563eb;
-            color: white;
-            border: 0;
-            border-radius: 8px;
-            padding: 12px 18px;
-            font-size: 16px;
-        }
-
-        footer {
-            padding: 20px;
-            color: #52617a;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ramveer AI Study</title>
+<style>
+body{font-family:Arial;background:#f0f5ff;color:#172554;margin:0;text-align:center}
+header{background:#123c91;color:white;padding:22px}
+button{padding:12px;margin:6px;background:#2563eb;color:white;border:0;border-radius:8px;font-size:16px}
+section{background:white;margin:16px;padding:16px;border-radius:12px;text-align:left}
+.hidden{display:none}
+</style>
 </head>
-
 <body>
-    <header>
-        <h1>Ramveer AI Study</h1>
-        <p>सीखो आसान हिंदी में! 🚀</p>
-    </header>
+<header>
+<h1>Ramveer AI Study 📚</h1>
+<p>सीखो आसान हिंदी में!</p>
+</header>
 
-    <main>
-        <h2>आपकी पढ़ाई, आपकी सफलता 📚</h2>
-        <p>मुफ्त में सीखें और अपना ज्ञान बढ़ाएँ।</p>
+<h2>अपना विषय चुनें</h2>
+<button onclick="showNotes('botanyNotes')">🌿 Botany</button>
+<button onclick="showNotes('computerNotes')">💻 Computer Application</button>
 
-        <div class="card">
-            <h3>🌿 Botany</h3>
-            <p>वनस्पति विज्ञान के आसान नोट्स।</p>
-            <button onclick="study('Botany')">पढ़ना शुरू करें</button>
-        </div>
+<section id="welcome">
+<h3>स्वागत है!</h3>
+<p>ऊपर किसी विषय के बटन पर क्लिक करके नोट्स पढ़ें।</p>
+</section>
 
-        <div class="card">
-            <h3>💻 Computer Application</h3>
-            <p>कंप्यूटर, Python और Software Engineering।</p>
-            <button onclick="study('Computer Application')">सीखना शुरू करें</button>
-        </div>
+<section id="botanyNotes" class="hidden">
+<h2>🌿 Botany Notes</h2>
+<h3>1. कोशिका (Cell)</h3>
+<p>कोशिका जीवों की संरचनात्मक और क्रियात्मक मूल इकाई है।</p>
+<h3>2. प्रकाश संश्लेषण (Photosynthesis)</h3>
+<p>हरे पौधे सूर्य के प्रकाश की सहायता से पानी और कार्बन डाइऑक्साइड से भोजन बनाते हैं और ऑक्सीजन छोड़ते हैं।</p>
+<h3>3. जाइलम (Xylem)</h3>
+<p>जाइलम जड़ों से पानी और खनिजों को पौधे के दूसरे भागों तक पहुँचाता है।</p>
+</section>
 
-        <div class="card">
-            <h3>🤖 AI Study Helper</h3>
-            <p>अपना सवाल लिखें और पढ़ाई शुरू करें।</p>
-            <input id="question" placeholder="अपना सवाल लिखें" style="padding:10px;max-width:85%;width:260px">
-            <br><br>
-            <button onclick="askAI()">सवाल पूछें</button>
-            <p id="answer"></p>
-        </div>
-    </main>
+<section id="computerNotes" class="hidden">
+<h2>💻 Computer Application Notes</h2>
+<h3>1. Python</h3>
+<p>Python एक सरल प्रोग्रामिंग भाषा है। इसका उपयोग AI और Data Science में होता है।</p>
+<h3>2. Software Engineering</h3>
+<p>इसमें सॉफ्टवेयर की योजना, डिजाइन, निर्माण, परीक्षण और रखरखाव किया जाता है।</p>
+<h3>3. Data Science</h3>
+<p>डेटा साइंस में डेटा का विश्लेषण करके उपयोगी जानकारी प्राप्त की जाती है।</p>
+</section>
 
-    <footer>
-        © 2026 Ramveer AI Labs
-    </footer>
+<footer>© 2026 Ramveer AI Labs</footer>
 
-    <script>
-        function study(subject) {
-            alert(subject + " के नोट्स जल्द जोड़े जाएँगे!");
-        }
-
-        function askAI() {
-            const q = document.getElementById("question").value.trim();
-            document.getElementById("answer").textContent =
-                q ? "आपका सवाल: " + q +
-                " — AI उत्तर सुविधा अभी जोड़नी बाकी है।" :
-                "कृपया पहले अपना सवाल लिखें।";
-        }
-    </script>
+<script>
+function showNotes(id){
+document.getElementById('welcome').classList.add('hidden');
+document.getElementById('botanyNotes').classList.add('hidden');
+document.getElementById('computerNotes').classList.add('hidden');
+document.getElementById(id).classList.remove('hidden');
+}
+</script>
 </body>
-
 </html>
