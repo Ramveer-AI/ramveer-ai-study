@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -6,57 +5,169 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ramveer AI Study</title>
 <style>
-body{font-family:Arial;background:#f0f5ff;color:#172554;margin:0;text-align:center}
-header{background:#123c91;color:white;padding:22px}
-button{padding:12px;margin:6px;background:#2563eb;color:white;border:0;border-radius:8px;font-size:16px}
-section{background:white;margin:16px;padding:16px;border-radius:12px;text-align:left}
+body{font-family:Arial,sans-serif;background:#f0f5ff;color:#172554;margin:0;text-align:center}
+header{background:#123c91;color:white;padding:22px 10px}
+main{padding:12px}
+.card{background:white;margin:14px auto;padding:16px;border-radius:12px;max-width:650px;text-align:left;box-shadow:0 2px 8px #ccd6e8}
+button,select{padding:11px;margin:5px;border:0;border-radius:7px;font-size:15px}
+button{background:#2563eb;color:white}
+input{padding:11px;max-width:90%;width:300px}
 .hidden{display:none}
+.question{border-top:1px solid #ddd;padding:12px 0}
+.option{display:block;padding:6px}
+.correct{color:green}
+.wrong{color:#c62828}
+#result{font-weight:bold}
+footer{padding:20px;color:#52617a}
 </style>
 </head>
 <body>
 <header>
 <h1>Ramveer AI Study 📚</h1>
 <p>सीखो आसान हिंदी में!</p>
+<p>मुफ्त नोट्स • MCQ टेस्ट • कंप्यूटर • विज्ञान</p>
 </header>
 
+<main>
 <h2>अपना विषय चुनें</h2>
-<button onclick="showNotes('botanyNotes')">🌿 Botany</button>
-<button onclick="showNotes('computerNotes')">💻 Computer Application</button>
+<button onclick="showNotes('botanyNotes')">🌿 Botany Notes</button>
+<button onclick="showNotes('computerNotes')">💻 Computer Notes</button>
 
-<section id="welcome">
-<h3>स्वागत है!</h3>
-<p>ऊपर किसी विषय के बटन पर क्लिक करके नोट्स पढ़ें।</p>
-</section>
-
-<section id="botanyNotes" class="hidden">
+<section id="botanyNotes" class="card hidden">
 <h2>🌿 Botany Notes</h2>
 <h3>1. कोशिका (Cell)</h3>
 <p>कोशिका जीवों की संरचनात्मक और क्रियात्मक मूल इकाई है।</p>
-<h3>2. प्रकाश संश्लेषण (Photosynthesis)</h3>
-<p>हरे पौधे सूर्य के प्रकाश की सहायता से पानी और कार्बन डाइऑक्साइड से भोजन बनाते हैं और ऑक्सीजन छोड़ते हैं।</p>
+<h3>2. प्रकाश संश्लेषण</h3>
+<p>हरे पौधे सूर्य के प्रकाश की सहायता से पानी और कार्बन डाइऑक्साइड से भोजन बनाते हैं। ऑक्सीजन निकलती है।</p>
 <h3>3. जाइलम (Xylem)</h3>
-<p>जाइलम जड़ों से पानी और खनिजों को पौधे के दूसरे भागों तक पहुँचाता है।</p>
+<p>जाइलम जड़ों से पानी और खनिजों को पौधे के अन्य भागों तक पहुँचाता है।</p>
+<h3>4. फ्लोएम (Phloem)</h3>
+<p>फ्लोएम पौधे में बने भोजन को विभिन्न भागों तक पहुँचाता है।</p>
+<h3>5. माइटोकॉन्ड्रिया</h3>
+<p>यह कोशिका में ऊर्जा उत्पादन से जुड़ा कोशिकांग है।</p>
 </section>
 
-<section id="computerNotes" class="hidden">
+<section id="computerNotes" class="card hidden">
 <h2>💻 Computer Application Notes</h2>
 <h3>1. Python</h3>
-<p>Python एक सरल प्रोग्रामिंग भाषा है। इसका उपयोग AI और Data Science में होता है।</p>
-<h3>2. Software Engineering</h3>
+<p>Python एक उच्च-स्तरीय प्रोग्रामिंग भाषा है। इसका उपयोग AI, डेटा साइंस और सॉफ्टवेयर में होता है।</p>
+<h3>2. Data Science</h3>
+<p>डेटा साइंस में डेटा का विश्लेषण करके उपयोगी जानकारी निकाली जाती है।</p>
+<h3>3. Software Engineering</h3>
 <p>इसमें सॉफ्टवेयर की योजना, डिजाइन, निर्माण, परीक्षण और रखरखाव किया जाता है।</p>
-<h3>3. Data Science</h3>
-<p>डेटा साइंस में डेटा का विश्लेषण करके उपयोगी जानकारी प्राप्त की जाती है।</p>
+<h3>4. HTML</h3>
+<p>HTML का उपयोग वेब पेज की संरचना बनाने के लिए होता है।</p>
+<h3>5. JavaScript</h3>
+<p>JavaScript वेबसाइट में इंटरैक्टिव सुविधाएँ जोड़ने में मदद करती है।</p>
 </section>
 
-<footer>© 2026 Ramveer AI Labs</footer>
+<section class="card">
+<h2>📝 Online MCQ Test</h2>
+<p>विषय चुनो और अपना टेस्ट शुरू करो।</p>
+<select id="subject" onchange="startTest()">
+<option value="botany">Botany</option>
+<option value="computer">Computer Application</option>
+</select>
+<div id="quiz"></div>
+<button onclick="checkAnswers()">जवाब जाँचें</button>
+<button onclick="startTest()">फिर से टेस्ट दें</button>
+<div id="result"></div>
+<div id="review"></div>
+</section>
+
+<section class="card">
+<h2>🤖 AI Study Helper</h2>
+<p>अपना पढ़ाई से जुड़ा सवाल लिखो।</p>
+<input id="question" placeholder="जैसे: प्रकाश संश्लेषण क्या है?">
+<br>
+<button onclick="answerQuestion()">जवाब देखें</button>
+<p id="answer"></p>
+<p><small>यह अभी शुरुआती डेमो है, असली AI से जुड़ा नहीं है।</small></p>
+</section>
+</main>
+
+<footer>© 2026 Ramveer AI Labs | Ramveer AI Study</footer>
 
 <script>
+const questions = {
+botany: [
+{q:"कोशिका की मूल इकाई क्या है?",o:["ऊतक","जीवों की संरचनात्मक और क्रियात्मक इकाई","अंग","अंग तंत्र"],a:1,e:"कोशिका जीवन की संरचनात्मक और क्रियात्मक मूल इकाई है।"},
+{q:"प्रकाश संश्लेषण में कौन-सी गैस उपयोग होती है?",o:["ऑक्सीजन","नाइट्रोजन","कार्बन डाइऑक्साइड","हाइड्रोजन"],a:2,e:"पौधे प्रकाश संश्लेषण में कार्बन डाइऑक्साइड का उपयोग करते हैं।"},
+{q:"जाइलम का मुख्य कार्य क्या है?",o:["भोजन बनाना","पानी और खनिज पहुँचाना","बीज बनाना","फूल बनाना"],a:1,e:"जाइलम पानी और खनिजों का परिवहन करता है।"},
+{q:"फ्लोएम क्या पहुँचाता है?",o:["भोजन","केवल ऑक्सीजन","मिट्टी","सूर्य का प्रकाश"],a:0,e:"फ्लोएम पौधे में बने भोजन का परिवहन करता है।"},
+{q:"प्रकाश संश्लेषण में मुख्य वर्णक कौन-सा है?",o:["हीमोग्लोबिन","क्लोरोफिल","मेलानिन","केराटिन"],a:1,e:"क्लोरोफिल प्रकाश ऊर्जा को अवशोषित करता है।"},
+{q:"माइटोकॉन्ड्रिया किससे संबंधित है?",o:["ऊर्जा उत्पादन","जल अवशोषण","परागण","बीज फैलाव"],a:0,e:"माइटोकॉन्ड्रिया कोशिकीय श्वसन और ATP उत्पादन में महत्वपूर्ण है।"},
+{q:"पौधे पानी मुख्यतः किस भाग से लेते हैं?",o:["फूल","पत्तियाँ","जड़ें","फल"],a:2,e:"जड़ के रोम मिट्टी से पानी और खनिज अवशोषित करते हैं।"},
+{q:"रंध्र (Stomata) का मुख्य कार्य क्या है?",o:["गैसों का आदान-प्रदान","बीज बनाना","जड़ बनाना","फल पकाना"],a:0,e:"रंध्र गैसों के आदान-प्रदान और वाष्पोत्सर्जन में सहायता करते हैं।"},
+{q:"परागकण कहाँ बनते हैं?",o:["जड़ में","परागकोष में","पत्ती की नस में","फल में"],a:1,e:"फूल के पुंकेसर के परागकोष में परागकण बनते हैं।"},
+{q:"DNA का पूरा नाम क्या है?",o:["Deoxyribonucleic Acid","Dynamic Nitrogen Acid","Double Natural Atom","Deoxy Nitric Air"],a:0,e:"DNA का पूरा नाम Deoxyribonucleic Acid है।"}
+],
+computer: [
+{q:"Python क्या है?",o:["प्रोग्रामिंग भाषा","ऑपरेटिंग सिस्टम","ब्राउज़र","हार्डवेयर"],a:0,e:"Python एक उच्च-स्तरीय प्रोग्रामिंग भाषा है।"},
+{q:"HTML का उपयोग किसलिए होता है?",o:["वेब पेज की संरचना","कंप्यूटर साफ करना","वीडियो रिकॉर्ड करना","डेटा मिटाना"],a:0,e:"HTML वेब पेज की संरचना बनाने में उपयोग होता है।"},
+{q:"CPU का पूरा नाम क्या है?",o:["Central Processing Unit","Computer Power Utility","Central Program User","Control Print Unit"],a:0,e:"CPU का पूरा नाम Central Processing Unit है।"},
+{q:"Python में स्क्रीन पर लिखने के लिए कौन-सा फ़ंक्शन है?",o:["show()","print()","writeScreen()","displayText()"],a:1,e:"print() का उपयोग आउटपुट दिखाने के लिए किया जाता है।"},
+{q:"डेटा साइंस का उद्देश्य क्या है?",o:["डेटा से उपयोगी जानकारी निकालना","केवल गेम खेलना","केवल टाइपिंग","कंप्यूटर बंद करना"],a:0,e:"डेटा साइंस डेटा का विश्लेषण करके उपयोगी जानकारी निकालता है।"},
+{q:"सॉफ्टवेयर इंजीनियरिंग में क्या शामिल है?",o:["योजना और परीक्षण","केवल पेंटिंग","केवल टाइपिंग","केवल प्रिंटिंग"],a:0,e:"सॉफ्टवेयर इंजीनियरिंग में योजना, डिजाइन, विकास और परीक्षण शामिल हैं।"},
+{q:"इनमें से कौन-सा ऑपरेटिंग सिस्टम है?",o:["Windows","HTML","Python","Google Search"],a:0,e:"Windows एक ऑपरेटिंग सिस्टम है।"},
+{q:"वेबसाइट को इंटरैक्टिव बनाने में कौन मदद करता है?",o:["JavaScript","केवल कागज","केवल माउस","केवल प्रिंटर"],a:0,e:"JavaScript वेबसाइट में इंटरैक्टिव सुविधाएँ जोड़ती है।"},
+{q:"AI का पूरा नाम क्या है?",o:["Automatic Internet","Artificial Intelligence","Advanced Input","Applied Interface"],a:1,e:"AI का पूरा नाम Artificial Intelligence है।"},
+{q:"डेटाबेस का उपयोग किसलिए होता है?",o:["डेटा व्यवस्थित रखने के लिए","केवल चित्र बनाने के लिए","कंप्यूटर चार्ज करने के लिए","आवाज बढ़ाने के लिए"],a:0,e:"डेटाबेस डेटा को व्यवस्थित रूप से संग्रहित और प्रबंधित करता है।"}
+]
+};
+
 function showNotes(id){
-document.getElementById('welcome').classList.add('hidden');
 document.getElementById('botanyNotes').classList.add('hidden');
 document.getElementById('computerNotes').classList.add('hidden');
 document.getElementById(id).classList.remove('hidden');
+document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
+
+function startTest(){
+const subject=document.getElementById('subject').value;
+const list=questions[subject];
+document.getElementById('result').textContent='';
+document.getElementById('review').innerHTML='';
+let html='';
+list.forEach((item,i)=>{
+html+=`<div class="question"><b>${i+1}. ${item.q}</b>`;
+item.o.forEach((option,j)=>{
+html+=`<label class="option"><input type="radio" name="q${i}" value="${j}"> ${option}</label>`;
+});
+html+='</div>';
+});
+document.getElementById('quiz').innerHTML=html;
+}
+function checkAnswers(){
+const subject=document.getElementById('subject').value;
+const list=questions[subject];
+let score=0,review='';
+list.forEach((item,i)=>{
+const selected=document.querySelector('input[name="q'+i+'"]:checked');
+if(selected && Number(selected.value)===item.a)score++;
+review+=`<div class="question"><b>${i+1}. ${item.q}</b><p class="${selected && Number(selected.value)===item.a?'correct':'wrong'}">${selected && Number(selected.value)===item.a?'सही उत्तर!':'सही उत्तर: '+item.o[item.a]}</p><p>${item.e}</p></div>`;
+});
+document.getElementById('result').textContent='आपका स्कोर: '+score+' / '+list.length;
+document.getElementById('review').innerHTML=review;
+}
+function answerQuestion(){
+const q=document.getElementById('question').value.trim().toLowerCase();
+let answer='यह सवाल अभी डेमो में उपलब्ध नहीं है। असली AI जवाब के लिए वेबसाइट को AI सेवा से जोड़ना होगा।';
+if(!q){answer='पहले अपना सवाल लिखें।';}
+else if(q.includes('प्रकाश संश्लेषण')||q.includes('photosynthesis')){
+answer='प्रकाश संश्लेषण वह प्रक्रिया है जिसमें हरे पौधे सूर्य के प्रकाश की सहायता से पानी और कार्बन डाइऑक्साइड से भोजन बनाते हैं तथा ऑक्सीजन छोड़ते हैं।';
+}else if(q.includes('जाइलम')||q.includes('xylem')){
+answer='जाइलम पौधे की जड़ों से पानी और खनिजों को अन्य भागों तक पहुँचाता है।';
+}else if(q.includes('python')){
+answer='Python एक उच्च-स्तरीय प्रोग्रामिंग भाषा है, जिसका उपयोग डेटा साइंस, AI और सॉफ्टवेयर बनाने में होता है।';
+}else if(q.includes('डेटा साइंस')||q.includes('data science')){
+answer='डेटा साइंस में डेटा का विश्लेषण करके उपयोगी जानकारी और निष्कर्ष निकाले जाते हैं।';
+}else if(q.includes('ai')||q.includes('artificial intelligence')){
+answer='AI का अर्थ Artificial Intelligence है। इसका उपयोग कंप्यूटर को ऐसे काम करने में सक्षम बनाने के लिए किया जाता है जिनमें सामान्यतः मानवीय बुद्धिमत्ता की जरूरत होती है।';
+}
+document.getElementById('answer').textContent=answer;
+}
+startTest();
 </script>
 </body>
 </html>
