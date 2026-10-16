@@ -30,6 +30,19 @@ footer{padding:20px;color:#52617a}
 
 <main>
 <h2>अपना विषय चुनें</h2>
+  
+<div class="card">
+  <h2>🔎 नोट्स खोजें</h2>
+  <input
+    id="searchInput"
+    type="search"
+    placeholder="Botany, Python, Cell..."
+    style="width:65%;padding:12px"
+  >
+  <button onclick="searchNotes()">Search</button>
+  <p id="searchResult"></p>
+</div>
+  
 <button onclick="showNotes('botanyNotes')">🌿 Botany Notes</button>
 <button onclick="showNotes('computerNotes')">💻 Computer Notes</button>
 
@@ -168,6 +181,40 @@ answer='AI का अर्थ Artificial Intelligence है। इसका �
 document.getElementById('answer').textContent=answer;
 }
 startTest();
+  
+function searchNotes() {
+  const input = document.getElementById("searchInput");
+  const result = document.getElementById("searchResult");
+  const query = input.value.trim().toLowerCase();
+
+  document.querySelectorAll(
+    "#botanyNotes, #computerNotes"
+  ).forEach(section => section.classList.add("hidden"));
+
+  if (!query) {
+    result.textContent = "पहले कोई विषय लिखें।";
+    return;
+  }
+
+  const sections = [
+    document.getElementById("botanyNotes"),
+    document.getElementById("computerNotes")
+  ];
+
+  let found = false;
+
+  sections.forEach(section => {
+    if (section && section.textContent.toLowerCase().includes(query)) {
+      section.classList.remove("hidden");
+      found = true;
+    }
+  });
+
+  result.textContent = found
+    ? "आपके खोजे गए विषय के नोट्स नीचे दिख रहे हैं।"
+    : "यह विषय नहीं मिला। दूसरा शब्द लिखकर खोजें।";
+}
+
 </script>
 </body>
 </html>
